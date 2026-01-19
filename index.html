@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>press & question</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="record-label" id="recordLabel">
+        bugünün rekoru <span id="recordTime">0:00</span>
+    </div>
+
+    <div class="message-area" id="message">
+        Merhaba.
+    </div>
+
+    <button class="main-button" id="mainButton">
+        bas
+    </button>
+
+    <div class="counters">
+        <div class="counter">
+            <span class="counter-value" id="clickCount">0</span>
+            <span class="counter-label">basış</span>
+        </div>
+        <div class="counter">
+            <span class="counter-value" id="timeCount">0:00</span>
+            <span class="counter-label">süre</span>
+        </div>
+    </div>
+
+    <button class="share-button" id="shareButton" aria-label="Hikayeye at">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+    </button>
+
+    <button class="mute-button" id="muteButton">
+        ses: açık
+    </button>
+
+    <div class="share-modal-overlay" id="shareModal" style="display: none;">
+        <div class="share-modal">
+            <h3 class="share-title">Paylaş</h3>
+            <button class="share-option-btn" id="btnShareFriend">
+                <span>Arkadaşına Gönder</span>
+                <small>Bağlantıyı ilet</small>
+            </button>
+            <button class="share-option-btn" id="btnShareStory">
+                <span>Story At</span>
+                <small>Görsel paylaş</small>
+            </button>
+            <a href="https://www.patreon.com/cw/psyfurkan/membership" target="_blank"
+                class="share-option-btn support-btn">
+                <span>Bana Kahve Ismarla</span>
+                <small>Destek ol</small>
+            </a>
+            <button class="close-modal-btn" id="btnCloseModal">Kapat</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
