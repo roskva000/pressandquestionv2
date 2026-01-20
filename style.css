@@ -12,18 +12,20 @@ body {
 
 body {
     font-family: 'EB Garamond', 'Georgia', serif;
-    background: #0a0a0a;
+    background-color: #050505;
+    background-image:
+        radial-gradient(circle at 50% 50%, #111 0%, #050505 60%, #000 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #e8e8e8;
+    color: #b0b0b0;
     overflow: hidden;
     position: relative;
 }
 
-/* Very subtle film grain */
+/* Cinematic film grain & vignette */
 body::before {
     content: '';
     position: fixed;
@@ -31,78 +33,130 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
     pointer-events: none;
     z-index: 1000;
+    mix-blend-mode: overlay;
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
 }
 
-/* Message area - minimal, spacious */
+/* Ethereal Message Area */
 .message-area {
     position: absolute;
-    top: 20%;
+    top: 18%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: #888;
-    max-width: 600px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    /* Lighter weight for elegance */
+    color: #e0e0e0;
+    max-width: 650px;
     z-index: 20;
-    /* Ensure it stays on top if needed, but spacing helps */
-    line-height: 1.8;
+    line-height: 1.6;
     text-align: center;
-    letter-spacing: 0.04em;
-    transition: opacity 0.6s ease;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+
+    /* Blur-in animation for new texts */
     opacity: 1;
+    filter: blur(0px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
 .message-area.fade {
     opacity: 0;
+    filter: blur(10px);
 }
 
-/* The button - ritual object */
+/* The Button - An Altar/Physical Object */
 .main-button {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     border: none;
-    background: #111;
-    /* Subtle 3D effect with shadows */
+    background: radial-gradient(circle at 30% 30%, #1a1a1a, #080808);
+
+    /* Physical depth shadows */
     box-shadow:
-        -4px -4px 10px rgba(255, 255, 255, 0.03),
-        /* Light top-left */
-        4px 4px 10px rgba(0, 0, 0, 0.5),
-        /* Dark bottom-right */
-        inset 1px 1px 2px rgba(255, 255, 255, 0.05);
-    /* Inner highlight */
-    color: #999;
-    font-size: 0.95rem;
-    font-weight: 400;
-    font-family: 'EB Garamond', 'Georgia', serif;
-    letter-spacing: 0.2em;
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        /* Tiny edge detail */
+        inset 10px 10px 20px rgba(0, 0, 0, 0.8),
+        /* Deep inner shadow */
+        inset -5px -5px 15px rgba(255, 255, 255, 0.02),
+        /* Subtle rim light reflection */
+        15px 15px 30px rgba(0, 0, 0, 0.6),
+        /* Drop shadow */
+        -5px -5px 20px rgba(25, 25, 25, 0.05);
+    /* Ambient light top-left */
+
+    color: #4a4a4a;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.3em;
     text-transform: lowercase;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* Breathing Rim Light Effect */
+    animation: breathingLight 6s ease-in-out infinite;
+}
+
+@keyframes breathingLight {
+
+    0%,
+    100% {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 15px 15px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    50% {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), 15px 15px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(200, 200, 200, 0.02);
+    }
+}
+
+.main-button::after {
+    /* Inner concave feel */
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 70% 70%, #0a0a0a, #141414);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+    z-index: 1;
+}
+
+.main-button span {
+    z-index: 2;
+    /* Text above inner circle */
+    opacity: 0.6;
+    transition: opacity 0.3s;
 }
 
 .main-button:hover {
-    color: #999;
-    /* No hover effect */
+    transform: scale(1.02);
+    color: #777;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        20px 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.main-button:hover span {
+    opacity: 0.9;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .main-button:active {
-    background: #0d0d0d;
-    transform: translateY(1px);
+    transform: scale(0.96);
+    background: #050505;
     box-shadow:
-        -1px -1px 3px rgba(255, 255, 255, 0.02),
-        1px 1px 3px rgba(0, 0, 0, 0.4),
-        inset 2px 2px 5px rgba(0, 0, 0, 0.5);
-    /* Deep press feel */
-    color: #888;
+        inset 5px 5px 15px rgba(0, 0, 0, 0.9),
+        inset -1px -1px 5px rgba(50, 50, 50, 0.1);
 }
 
 /* Subtle pulse - barely noticeable */
@@ -390,8 +444,15 @@ body::before {
     position: absolute;
     top: 50%;
     left: 50%;
+    /* Fix for mobile overflow: Use viewport relative units or smaller fixed size */
     width: 600px;
-    height: 600px;
+    /* Fallback (redundant if checking bottom) or reference */
+    /* Use simple vw/vh or clamp */
+    width: 80vmin;
+    /* 80% of smaller dimension */
+    height: 80vmin;
+    max-width: 600px;
+    max-height: 600px;
     background: radial-gradient(circle, rgba(197, 160, 89, 0.03) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     z-index: -2;
@@ -748,6 +809,79 @@ body::before {
     font-size: 0.9rem;
     letter-spacing: 0.05em;
 }
+
+/* Corruption Effects - FIXED */
+.blur-out {
+    filter: blur(8px) !important;
+    opacity: 0.3 !important;
+    transition: all 1s ease;
+}
+
+body.glitch-active::before {
+    opacity: 0.3 !important;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E") !important;
+    animation: noiseAnim 0.2s infinite;
+}
+
+@keyframes noiseAnim {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-5%, -5%);
+    }
+
+    20% {
+        transform: translate(-10%, 5%);
+    }
+
+    30% {
+        transform: translate(5%, -10%);
+    }
+
+    40% {
+        transform: translate(-5%, 15%);
+    }
+
+    50% {
+        transform: translate(-10%, 5%);
+    }
+
+    60% {
+        transform: translate(15%, 0);
+    }
+
+    70% {
+        transform: translate(0, 10%);
+    }
+
+    80% {
+        transform: translate(-15%, 0);
+    }
+
+    90% {
+        transform: translate(10%, 5%);
+    }
+
+    100% {
+        transform: translate(5%, 0);
+    }
+}
+
+.button-resisting {
+    transition: transform 0.8s cubic-bezier(0.5, 0, 0, 1) !important;
+    /* Sluggish */
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9) !important;
+    filter: grayscale(100%) contrast(150%);
+}
+
+.button-resisting:active {
+    transform: scale(0.99) !important;
+    /* Barely moves */
+}
+
+
 
 .close-modal-btn:hover {
     color: #999;
