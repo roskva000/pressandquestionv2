@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="manifest" href="manifest.json">
 </head>
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1ZYZ08M2JL"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-1ZYZ08M2JL');
+    gtag('config', 'G-1ZYZ08M2JL');
 </script>
 
 <body>
@@ -77,6 +78,10 @@
                 <span>Bana Kahve Ismarla</span>
                 <small>Destek ol</small>
             </a>
+            <button class="share-option-btn" id="btnInstallApp" style="display: none;">
+                <span>Uygulamayı Yükle</span>
+                <small>Ana ekrana ekle</small>
+            </button>
             <button class="close-modal-btn" id="btnCloseModal">Kapat</button>
         </div>
     </div>

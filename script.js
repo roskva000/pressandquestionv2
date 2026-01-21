@@ -783,3 +783,37 @@ setInterval(() => {
 
 setTimeout(() => { if (mainButton) mainButton.classList.add('pulse'); }, 2000);
 if (mainButton) mainButton.addEventListener('click', () => { mainButton.classList.remove('pulse'); }, { once: true });
+
+// ==========================================
+// PWA LOGIC
+// ==========================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+        });
+    });
+}
+
+let deferredPrompt;
+const installBtn = document.getElementById('btnInstallApp');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) installBtn.style.display = 'flex';
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt = null;
+            });
+        }
+    });
+}
