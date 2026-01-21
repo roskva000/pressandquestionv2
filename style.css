@@ -357,10 +357,10 @@ body::before {
 /* Responsive Design - Mobile Optimized */
 @media (max-width: 600px) {
     .main-button {
-        width: 200px;
-        /* Significantly larger */
-        height: 200px;
-        font-size: 1.4rem;
+        width: 170px;
+        /* Slightly smaller to prevent overlap */
+        height: 170px;
+        font-size: 1.3rem;
         /* Larger text */
         box-shadow:
             -3px -3px 8px rgba(255, 255, 255, 0.03),
@@ -369,13 +369,13 @@ body::before {
     }
 
     .message-area {
-        top: 18%;
-        /* Slightly higher to leave room for big button */
-        font-size: 1.35rem;
-        /* More readable */
-        max-width: 90%;
+        top: 12%;
+        /* Move higher up */
+        font-size: 1.15rem;
+        /* Slightly smaller font for better fit */
+        max-width: 85%;
         /* Use full width */
-        line-height: 1.6;
+        line-height: 1.5;
     }
 
     .counters {
